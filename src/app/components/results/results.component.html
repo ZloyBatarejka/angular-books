@@ -1,0 +1,11 @@
+<ul class="books__list">
+  <li *ngFor="let item of booksService.books" class="books__card" [id]="item.id">
+    <img class="books__img" alt="book" [src]="item.img">
+    <p class="books__title">{{item.title}}</p>
+    <p>{{item.author}}</p>
+    <p class="books__buttons">
+      <span (click)="booksService.addBook(item)" *ngIf="isAdded(item.id)">&#10004;</span>
+      <span (click)="booksService.getBook(item.id)">&#10010;</span>
+    </p>
+  </li>
+</ul>

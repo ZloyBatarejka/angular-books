@@ -1,0 +1,34 @@
+<div class="wrap" (click)="authService.modal = false">
+
+</div>
+
+<form
+class="form"
+[formGroup]="form"
+(ngSubmit)="submit()"
+>
+  <span (click)="authService.modal = false">&#10006;</span>
+  <div class="form__header text-center">
+    <h2>Авторизация</h2>
+  </div>
+  <div  class="form__control">
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email">
+    <div class="form__error" *ngIf="form.get('email').invalid && form.get('email').touched">
+      <small *ngIf="form.get('email').errors.email">Введите корректный email</small>
+      <small *ngIf="form.get('email').errors.required">Поле должно быть заполнено</small>
+    </div>
+  </div>
+  <div  class="form__control">
+    <label for="password">Password:</label>
+    <input type="password" id="password" formControlName="password">
+    <div class="form__error" *ngIf="form.get('password').invalid && form.get('password').touched">
+      <small *ngIf="form.get('password').errors.minlength">Пароль должен быть не менее 6 символов</small>
+      <small *ngIf="form.get('password').errors.required">Поле должно быть заполнено</small>
+    </div>
+  </div>
+  <div class="form__buttons">
+    <button class="btn btn-primary" type="submit" (click)="authType = 'signInWithPassword'" [disabled]="form.invalid || submitted">Вход</button>
+    <button class="btn btn-primary" type="submit" (click)="authType ='signUp'" [disabled]="form.invalid || submitted">Регстрация</button>
+  </div>
+</form>

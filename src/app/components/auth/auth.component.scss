@@ -1,0 +1,41 @@
+
+
+.form {
+  position: relative;
+  z-index: 17;
+  background-color: white;
+  padding: 10px;
+  width: 300px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  &__header{
+    margin: 20px;
+    padding-top: 20px;
+  }
+  span{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
+  &__control {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 10px;
+    label {
+      margin-bottom: 10px;
+    }
+  }
+  &__buttons {
+    width: 80%;
+    margin: 0 auto;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+}

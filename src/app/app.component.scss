@@ -1,0 +1,25 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(rgb(61, 61, 165) , rgb(61, 62, 168) );
+  color: white;
+  height: 60px;
+  &__navigation {
+    list-style: none;
+    display: flex;
+  }
+  &__logo {
+    font-size: 30px;
+    margin: 15px;
+  }
+  &__item {
+    margin: 10px;
+
+  }
+  a{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+  }
+}

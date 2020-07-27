@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-books"
+    }
+  },
+  "defaultProject": "angular-books",
+  "cli": {
+    "analytics": "05c15616-1a7e-4eda-9a90-76c2ae3b3851"
+  }
 }

@@ -1,0 +1,13 @@
+<div class="wrap" (click)="bookService.book = null">
+</div>
+<div class="book">
+  <img class="book__img" alt="book" [src]="bookService.book.img">
+  <ul class="book__details">
+    <li><p class="books__title">{{bookService.book.title}}</p></li>
+    <li><p>Авторы: {{bookService.book.author.join(' ')}}</p></li>
+    <li><p>Дата публикации: {{bookService.book.date}}</p></li>
+    <li><p>Описание: {{bookService.book.description}}</p></li>
+    <li><p>Страниц: {{bookService.book.pagesCount}}</p></li>
+    <li *ngIf="bookService.book.link"><a [href]="bookService.book.link">Ссылка на покупку</a></li>
+  </ul>
+</div>

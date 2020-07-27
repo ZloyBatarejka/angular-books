@@ -1,0 +1,25 @@
+
+<form class="form" [formGroup]="form" (ngSubmit)="submit()">
+  <label class="switch">
+    <input type="checkbox" formControlName="author">
+    <span class="slider round"></span>
+  </label>
+
+  <div class="form__search">
+  <div class="form__control">
+    <label for="title">{{this.form.get('author').value ? 'По автору' : 'По назаванию'}}</label>
+    <input type="text" formControlName="title" id="title">
+    <div class="form__error" *ngIf="form.get('title').invalid && form.get('title').touched">
+      <small *ngIf="form.get('title').errors.required">Заполните поле</small>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit" [disabled]="form.invalid || submitted">Искать</button>
+</div>
+</form>
+
+<div class="arrow_right" *ngIf="searchData && searchData.startIndex / 10 <= maxPages" (click)="changeIndex(10)">
+  <span>&gt;</span>
+</div>
+<div class="arrow_left" *ngIf="searchData && searchData.startIndex >= 10" (click)="changeIndex(-10)">
+  <span>&lt;</span>
+</div>

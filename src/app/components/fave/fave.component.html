@@ -1,0 +1,15 @@
+<p *ngIf="!booksService.faveBooks.length">
+  Ваши закладки пусты, как и ваша душа...
+</p>
+<ul class="books__list">
+  <li *ngFor="let item of booksService.faveBooks" class="books__card" [id]="item.id">
+    <img class="books__img" alt="book" [src]="item.img">
+    <p class="books__title">{{item.title}}</p>
+    <p>{{item.author}}</p>
+    <p>{{item.date}}</p>
+    <p class="books__buttons">
+      <span (click)="booksService.deleteFavorite(item.fbId)" >&#10008;</span>
+      <span (click)="booksService.getBook(item.id)">&#10010;</span>
+    </p>
+  </li>
+</ul>
