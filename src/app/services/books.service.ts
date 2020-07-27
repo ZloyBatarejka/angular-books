@@ -8,7 +8,7 @@ import {IGoogleApiResponse, IBookPreview, IBook, IDbAnswer} from "../interface"
 export class BooksService {
   books:IBookPreview[] = []
   book:IBook = null;
-  token = localStorage.getItem('fb-token') ?  localStorage.getItem('fb-token').slice(0,6) : null;
+
   faveBooks:IBookPreview[] = []
   constructor(public http: HttpClient) {
 
@@ -51,22 +51,23 @@ export class BooksService {
       ()=>{})
   }
   addBook(book:IBookPreview){
-
-    if(!this.token){
+    const token = localStorage.getItem('fb-token');
+    if(!token){
       console.log("Уходи отсюда, мужик")
       return;
     }
-    this.http.post(`${environment.fbDbUrl}${this.token}.json`,book)
+    this.http.post(`${environment.fbDbUrl}${token.slice(0,6)}.json`,book)
     .subscribe(()=>{
       this.faveBooks.push(book)
     })
   }
   loadFavorites(){
-    if(!this.token){
+    const token = localStorage.getItem('fb-token');
+    if(!token){
       console.log("Уходи отсюда, мужик")
       return;
     }
-    this.http.get<IBookPreview[]>(`${environment.fbDbUrl}${this.token}.json`).subscribe((answer)=>{
+    this.http.get<IBookPreview[]>(`${environment.fbDbUrl}${token.slice(0,6)}.json`).subscribe((answer)=>{
       this.faveBooks = Object.values(answer).map(item=>item)
       Object.keys(answer).forEach((key,index)=>{
         this.faveBooks[index].fbId = key;
@@ -74,11 +75,12 @@ export class BooksService {
     })
   }
   deleteFavorite(id:string){
-    if(!this.token){
+    const token = localStorage.getItem('fb-token');
+    if(!token){
       console.log("Уходи отсюда, мужик")
       return;
     }
-    this.http.delete(`${environment.fbDbUrl}/${this.token}/${id}.json`).subscribe((response)=>{
+    this.http.delete(`${environment.fbDbUrl}/${token.slice(0,6)}/${id}.json`).subscribe((response)=>{
       console.log(response)
       this.faveBooks = this.faveBooks.filter(item=>item.fbId !== id)
     })
